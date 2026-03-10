@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ClawTools — OpenClaw Utilities</title>
-  <meta name="description" content="A collection of CLI tools and utilities for OpenClaw AI assistant. Install, manage, and monitor your OpenClaw setup." />
-  <meta property="og:title" content="ClawTools — OpenClaw Utilities" />
-  <meta property="og:description" content="CLI tools for OpenClaw: install, manage, monitor, and keep your AI assistant running." />
-  <meta property="og:url" content="https://clawtools.sh" />
+  <title>openclaw-cli — Keep OpenClaw alive, automatically</title>
+  <meta name="description" content="openclaw-cli is a watchdog daemon for OpenClaw AI assistant. Auto-detects crashes, restarts the gateway, and notifies you. Zero config." />
+  <meta property="og:title" content="openclaw-cli — Keep OpenClaw alive, automatically" />
+  <meta property="og:description" content="Watchdog daemon for OpenClaw. Auto-restarts your gateway, notifies you on crash, zero config." />
+  <meta property="og:url" content="https://openclaw-cli.sh" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,6 +35,37 @@
     a { color: var(--accent2); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
+
+    [data-theme="light"] {
+      --bg: #f8f9fb;
+      --surface: #ffffff;
+      --border: #e2e5ed;
+      --text: #1a1d26;
+      --muted: #5c6078;
+      --accent: #d94f2a;
+      --accent2: #1a6fd4;
+      --green: #1a9e82;
+    }
+    [data-theme="light"] .terminal,
+    [data-theme="light"] .terminal-bar,
+    [data-theme="light"] .terminal-body { background: #1a1d26 !important; }
+    [data-theme="light"] nav {
+      background: rgba(248,249,251,0.92);
+    }
+
+    /* THEME TOGGLE */
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 6px;
+      padding: .35rem .6rem;
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      transition: border-color .15s, color .15s;
+    }
+    .theme-toggle:hover { border-color: #888; color: var(--text); }
     /* NAV */
     nav {
       display: flex;
@@ -232,7 +263,8 @@
 <body>
 
 <nav>
-  <div class="nav-logo">🦞 ClawTools</div>
+  <div class="nav-logo">🦞 openclaw-cli</div>
+  <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">🌙</button>
   <div class="nav-links">
     <a href="#packages">Packages</a>
     <a href="#install">Install</a>
@@ -242,9 +274,9 @@
 </nav>
 
 <section class="hero">
-  <div class="hero-badge">✦ Built for OpenClaw</div>
-  <h1>Keep your <span>AI assistant</span><br>running reliably</h1>
-  <p>A collection of CLI tools for managing, monitoring, and extending your OpenClaw setup. One install, all the tools you need.</p>
+  <div class="hero-badge">🩺 OpenClaw Guardian Daemon</div>
+  <h1>Your OpenClaw,<br><span>always online</span></h1>
+  <p>Watchdog daemon for OpenClaw. Detects crashes, restarts the gateway automatically, and notifies you — zero configuration, zero babysitting.</p>
   <div class="hero-cta">
     <a href="#install" class="btn btn-primary">Get Started →</a>
     <a href="https://github.com/Sobranier/openclaw-doctor" class="btn btn-ghost" target="_blank">⭐ GitHub</a>
@@ -272,8 +304,8 @@
 </div>
 
 <section class="section" id="packages">
-  <div class="section-title">Packages</div>
-  <div class="section-sub">All packages are published to npm and maintained in the same repository.</div>
+  <div class="section-title">Install as any name</div>
+  <div class="section-sub">All package names point to the same tool. Pick the one that feels right.</div>
   <div class="pkg-grid">
     <div class="pkg-card">
       <div class="pkg-name">openclaw-cli</div>
@@ -340,6 +372,27 @@
   </p>
   <p style="margin-top:.5rem">MIT License · Built with ❤️ for OpenClaw users</p>
 </footer>
+
+
+<script>
+  (function() {
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('themeBtn');
+      if (btn) btn.textContent = saved === 'dark' ? '🌙' : '☀️';
+    });
+  })();
+
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    const btn = document.getElementById('themeBtn');
+    if (btn) btn.textContent = next === 'dark' ? '🌙' : '☀️';
+  }
+</script>
 
 </body>
 </html>
