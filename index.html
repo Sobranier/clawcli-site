@@ -267,8 +267,9 @@
   <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">🌙</button>
   <div class="nav-links">
     <a href="#packages">Packages</a>
+    <a href="#demo">Demo</a>
     <a href="#install">Install</a>
-    <a href="https://github.com/Sobranier/openclaw-doctor" target="_blank">GitHub</a>
+    <a href="https://github.com/Sobranier/openclaw-cli" target="_blank">GitHub</a>
     <a href="https://docs.openclaw.ai" target="_blank">Docs</a>
   </div>
 </nav>
@@ -279,7 +280,7 @@
   <p>Watchdog daemon for OpenClaw. Detects crashes, restarts the gateway automatically, and notifies you — zero configuration, zero babysitting.</p>
   <div class="hero-cta">
     <a href="#install" class="btn btn-primary">Get Started →</a>
-    <a href="https://github.com/Sobranier/openclaw-doctor" class="btn btn-ghost" target="_blank">⭐ GitHub</a>
+    <a href="https://github.com/Sobranier/openclaw-cli" class="btn btn-ghost" target="_blank">⭐ GitHub</a>
   </div>
 </section>
 
@@ -337,9 +338,17 @@
       <div class="pkg-desc">Shared utilities used across all openclaw-* packages.</div>
     </div>
     <div class="pkg-card">
-      <div class="pkg-name">openclaw-logs</div>
-      <div class="pkg-desc">Log viewer with filtering by level, time range, and source.</div>
+      <div class="pkg-name">hello-claw</div>
+      <div class="pkg-desc">Friendly alias package with the same runtime as openclaw-cli.</div>
     </div>
+  </div>
+</section>
+
+<section class="section" id="demo">
+  <div class="section-title">Demo</div>
+  <div class="section-sub">Real CLI workflow using openclaw-cli.</div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;overflow:hidden">
+    <img src="./assets/demo.gif" alt="openclaw-cli demo" style="width:100%;height:auto;border-radius:8px;display:block" />
   </div>
 </section>
 
@@ -370,12 +379,12 @@
   <div class="section-sub">macOS app — menubar guardian, always running.</div>
 
   <div class="pkg-grid" style="margin-bottom:1.5rem">
-    <a href="https://github.com/Sobranier/openclaw-cli/releases/latest/download/OpenClaw-CLI-arm64.dmg"
+    <a href="https://github.com/Sobranier/openclaw-cli/releases/latest"
        class="pkg-card" style="text-decoration:none;display:flex;align-items:center;gap:1rem">
       <span style="font-size:2rem">🍎</span>
       <div>
         <div class="pkg-name" style="color:var(--text)">macOS (Apple Silicon)</div>
-        <div class="pkg-desc">OpenClaw CLI.dmg · arm64</div>
+        <div class="pkg-desc">Latest Release · DMG/ZIP</div>
       </div>
     </a>
     <div class="pkg-card" style="opacity:.5">
@@ -396,7 +405,7 @@
 
 <footer>
   <p>
-    <a href="https://github.com/Sobranier/openclaw-doctor" target="_blank">GitHub</a> ·
+    <a href="https://github.com/Sobranier/openclaw-cli" target="_blank">GitHub</a> ·
     <a href="https://www.npmjs.com/package/openclaw-cli" target="_blank">npm</a> ·
     <a href="https://docs.openclaw.ai" target="_blank">OpenClaw Docs</a>
   </p>
