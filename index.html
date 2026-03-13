@@ -259,6 +259,18 @@
     }
     footer a { color: var(--muted); }
   </style>
+  <!-- Firebase GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B46J8RT804"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B46J8RT804', {
+      custom_map: { dimension1: 'platform' }
+    });
+    // Set platform dimension for all events
+    gtag('set', { platform: 'clawsite' });
+  </script>
 </head>
 <body>
 
@@ -431,6 +443,63 @@
     const btn = document.getElementById('themeBtn');
     if (btn) btn.textContent = next === 'dark' ? '🌙' : '☀️';
   }
+
+  // ── Click event tracking ──────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', function() {
+    // CTA buttons
+    document.querySelectorAll('.btn').forEach(function(el) {
+      el.addEventListener('click', function() {
+        gtag('event', 'cta_click', {
+          platform: 'clawsite',
+          label: el.textContent.trim(),
+          href: el.getAttribute('href') || ''
+        });
+      });
+    });
+
+    // Install tabs
+    document.querySelectorAll('.install-tab').forEach(function(el) {
+      el.addEventListener('click', function() {
+        gtag('event', 'install_tab_click', {
+          platform: 'clawsite',
+          tab: el.textContent.trim()
+        });
+        // Tab switch logic
+        document.querySelectorAll('.install-tab').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+        var codes = {
+          'npm': 'npm install -g openclaw-cli\n\n# then\nopenclaw-cli watch -d',
+          'npx': 'npx openclaw-cli watch -d',
+          'Homebrew': 'brew tap Sobranier/openclaw\nbrew install openclaw-cli\n\n# then\nopenclaw-cli watch -d'
+        };
+        var box = el.closest('.install-box').querySelector('.install-code');
+        if (box && codes[el.textContent.trim()]) {
+          box.innerHTML = codes[el.textContent.trim()].replace(/\n/g, '<br>').replace(/# /g, '<span style="color:var(--muted)"># </span>');
+        }
+      });
+    });
+
+    // Download card
+    var dlCard = document.querySelector('#download .pkg-card');
+    if (dlCard) {
+      dlCard.addEventListener('click', function() {
+        gtag('event', 'download_click', {
+          platform: 'clawsite',
+          os: 'macos'
+        });
+      });
+    }
+
+    // GitHub links
+    document.querySelectorAll('a[href*="github.com"]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        gtag('event', 'github_click', {
+          platform: 'clawsite',
+          href: el.getAttribute('href')
+        });
+      });
+    });
+  });
 </script>
 
 </body>
